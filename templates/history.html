@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather History</title>
+</head>
+<body>
+{% include 'Navbar.html' %}
+<div class=" container mb-3">
+    <div class="">
+        <h2 class="alert alert-success">Your weather history: </h2>
+    </div>
+</div>
+
+<div class="container shadow">
+    <div class="row">
+        <div class="col-md-2">
+            <h5>Unique Cities</h5>
+            <hr>
+            <ul>
+                <li><a href='/history'>All</a></li>
+                {% for x in unique_cities%}
+                <li><a href='/history/{{x}}'>{{x}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-8">
+            <table class="table table-striped table-hover">
+        <tr>
+            <td>Sl</td>
+            <td>City</td>
+            <td>Temp</td>
+            <td>Time</td>
+            <td>Action</td>
+        </tr>
+
+    {% for i in range(length) %}
+
+        <tr>
+            <td>{{i+1}}</td>
+            <td>{{historyList[i]['city']}}</td>
+            <td>{{historyList[i]['temp']}}</td>
+            <td>{{historyList[i]['time']}}</td>
+            <form action="/delete_history/{{historyList[i]['_id']}}" method="post">
+            <td><button class="btn btn-danger">Delete</button></td>
+            </form>
+        </tr>
+    {% endfor %}
+    </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

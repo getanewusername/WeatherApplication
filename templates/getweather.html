@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Weather</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class=" w-100">
+{% include 'Navbar.html' %}
+<div class="container my-2">
+
+    <h2 class="alert alert-info text-center">Get your weather</h2>
+  <div class="text-center">
+    <form action="/get_weather" method="post">
+    <input style="font-size:20px"  name="city" type="search" class="form-control mb-3 text-center" placeholder="Enter city name" value={{city}}>
+    <button class="btn btn-info">Search</button>
+    </form>
+      <br>
+{% if success %}
+      <div class="text-center">
+          <table class="table table-hover table-bordered">
+              <tr>
+                  <td colspan="2" class="text-center"><h3>{{name}}</h3></td>
+              </tr>
+              <tr>
+                  <td>Temperature</td>
+                  <td>{{temp}}&#8451</td>
+              </tr>
+              <tr>
+                  <td>Feels like</td>
+                  <td>{{feels_like}}&#8451</td>
+              </tr>
+              <tr>
+                  <td>Humidity</td>
+                  <td>{{humidity}}GM-&sup3</td>
+              </tr>
+              <tr>
+                  <td>Country</td>
+                  <td>{{country}}</td>
+              </tr>
+          </table>
+      </div>
+{% endif %}
+  </div>
+</div>
+</body>
+</html>
